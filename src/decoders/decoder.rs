@@ -38,6 +38,10 @@ pub(crate) fn check_objects(
     let mut index = item_index;
     const PRECISION_ITEM: u8 = 0x12;
 
+    if index >= message_values.len() {
+        return format!("Index out of bounds for FirehoseItemInfo Vec. Got adjusted index {}, Vec size is {}. This should not have happened", index, message_values.len());
+    }
+
     // Increment index get the actual firehose item data
     if item_type == PRECISION_ITEM {
         index += 1;
